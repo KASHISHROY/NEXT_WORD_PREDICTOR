@@ -7,11 +7,13 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 #Load the LSTM Model
 model=load_model('next_word_lstm.h5')
 
-#3 Laod the tokenizer
+
+
+#3 Laod the tokenizer.
 with open('tokenizer.pickle','rb') as handle:
     tokenizer=pickle.load(handle)
 
-# Function to predict the next word
+# Function to predict the next word.
 def predict_next_word(model, tokenizer, text, max_sequence_len):
     token_list = tokenizer.texts_to_sequences([text])[0]
     if len(token_list) >= max_sequence_len:
@@ -24,7 +26,7 @@ def predict_next_word(model, tokenizer, text, max_sequence_len):
             return word
     return None
 
-# streamlit app
+# streamlit app.
 st.title("Next Word Prediction With LSTM And Early Stopping")
 input_text=st.text_input("Enter the sequence of Words","To be or not to")
 if st.button("Predict Next Word"):
